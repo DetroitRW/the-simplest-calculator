@@ -16,7 +16,7 @@ fun main(args: Array<String>) {
             print("Введите число: ")
             val b = reader.nextInt()
 
-            println(a + b)
+            println("$a + $b = ${a + b}")
         } else if (z == "-") {
             print("Введите число: ")
             val a = reader.nextInt()
@@ -24,7 +24,7 @@ fun main(args: Array<String>) {
             print("Введите число: ")
             val b = reader.nextInt()
 
-            println(a - b)
+            println("$a - $b = ${a - b}")
         } else if (z == "*") {
             print("Введите число: ")
             val a = reader.nextInt()
@@ -32,7 +32,7 @@ fun main(args: Array<String>) {
             print("Введите число: ")
             val b = reader.nextInt()
 
-            println(a * b)
+            println("$a * $b = ${a * b}")
         } else if (z == "/") {
             print("Введите число: ")
             val a = reader.nextInt()
@@ -43,7 +43,7 @@ fun main(args: Array<String>) {
             if (b == 0) {
                 println("Делить на ноль нельзя!")
             } else {
-                println(a / b)
+                println("$a / $b = ${a / b}")
             }
         } else {
             println("Неверный знак операции, знак может быть +, -, *, /")
