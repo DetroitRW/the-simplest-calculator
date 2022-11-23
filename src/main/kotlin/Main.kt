@@ -11,36 +11,36 @@ fun main(args: Array<String>) {
             break
         } else if (z == "+") {
             print("Введите число: ")
-            val a = reader.nextInt()
+            val a = reader.nextDouble()
 
             print("Введите число: ")
-            val b = reader.nextInt()
+            val b = reader.nextDouble()
 
             println("$a + $b = ${a + b}")
         } else if (z == "-") {
             print("Введите число: ")
-            val a = reader.nextInt()
+            val a = reader.nextDouble()
 
             print("Введите число: ")
-            val b = reader.nextInt()
+            val b = reader.nextDouble()
 
             println("$a - $b = ${a - b}")
         } else if (z == "*") {
             print("Введите число: ")
-            val a = reader.nextInt()
+            val a = reader.nextDouble()
 
             print("Введите число: ")
-            val b = reader.nextInt()
+            val b = reader.nextDouble()
 
             println("$a * $b = ${a * b}")
         } else if (z == "/") {
             print("Введите число: ")
-            val a = reader.nextInt()
+            val a = reader.nextDouble()
 
             print("Введите число: ")
-            val b = reader.nextInt()
+            val b = reader.nextDouble()
 
-            if (b == 0) {
+            if (b - 0 < 0.0001) {
                 println("Делить на ноль нельзя!")
             } else {
                 println("$a / $b = ${a / b}")
