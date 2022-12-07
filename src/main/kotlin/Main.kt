@@ -1,9 +1,11 @@
 import java.util.Scanner
 
 fun main(args: Array<String>) {
-    val reader = Scanner(System.`in`)
-
+    calculator()
+}
+fun calculator() {
     while (true) {
+        val reader = Scanner(System.`in`)
         print("Введите знак операции: ")
         val z = reader.next()
 
