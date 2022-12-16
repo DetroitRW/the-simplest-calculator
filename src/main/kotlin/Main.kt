@@ -1,19 +1,21 @@
 import java.util.Scanner
 
 fun main(args: Array<String>) {
-
     while (true) {
         val z = promtString("Введите знак операции: ")
-        val calculator = Calculator()
+        val operation = operationFactory(z) ?: break
+        operation.calculate()
+    }
+}
 
-        when (z) {
-            "0" -> break
-            "+" -> calculator.plus()
-            "-" -> calculator.minus()
-            "*" -> calculator.multiply()
-            "/" -> calculator.divide()
-             else -> println("Неверный знак операции, знак может быть +, -, *, /")
-        }
+fun operationFactory(command: String): Operation? {
+    return when (command) {
+        "0" -> return null
+        "+" -> Plus()
+        "-" -> Minus()
+        "*" -> Multiply()
+        "/" -> Divide()
+        else -> InvalidOperation()
     }
 }
 
@@ -29,26 +31,38 @@ fun promtDuoble(text: String): Double {
     return reader.nextDouble()
 }
 
-class Calculator {
-    fun plus() {
+open class Operation {
+   open fun calculate() {
+
+    }
+}
+
+class Plus(): Operation() {
+   override fun calculate() {
         val a = promtDuoble("Введите число: ")
         val b = promtDuoble("Введите число: ")
         println("$a + $b = ${a + b}")
     }
+}
 
-    fun minus() {
+class Minus(): Operation() {
+    override fun calculate() {
         val a = promtDuoble("Введите число: ")
         val b = promtDuoble("Введите число: ")
         println("$a - $b = ${a - b}")
     }
+}
 
-    fun multiply() {
+class Multiply(): Operation() {
+    override fun calculate() {
         val a = promtDuoble("Введите число: ")
         val b = promtDuoble("Введите число: ")
         println("$a * $b = ${a * b}")
     }
+}
 
-    fun divide() {
+class Divide(): Operation() {
+    override fun calculate() {
         val a = promtDuoble("Введите число: ")
         val b = promtDuoble("Введите число: ")
 
@@ -57,6 +71,11 @@ class Calculator {
         } else {
             println("$a / $b = ${a / b}")
         }
+    }
+}
+class InvalidOperation(): Operation() {
+    override fun calculate() {
+        println("Неверный знак операции, знак может быть +, -, *, /")
     }
 }
 
