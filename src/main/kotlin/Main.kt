@@ -1,18 +1,21 @@
 import java.util.Scanner
 
 fun main(args: Array<String>) {
-
     while (true) {
         val z = promtString("Введите знак операции: ")
+        val operation = operationFactory(z) ?: break
+        operation.calculate()
+    }
+}
 
-        when (z) {
-            "0" -> break
-            "+" -> plus()
-            "-" -> minus()
-            "*" -> multiply()
-            "/" -> divide()
-             else -> println("Неверный знак операции, знак может быть +, -, *, /")
-        }
+fun operationFactory(command: String): Operation? {
+    return when (command) {
+        "0" -> return null
+        "+" -> Plus()
+        "-" -> Minus()
+        "*" -> Multiply()
+        "/" -> Divide()
+        else -> InvalidOperation()
     }
 }
 
@@ -28,31 +31,51 @@ fun promtDuoble(text: String): Double {
     return reader.nextDouble()
 }
 
-fun plus() {
-    val a = promtDuoble("Введите число: ")
-    val b = promtDuoble("Введите число: ")
-    println("$a + $b = ${a + b}")
-}
-fun minus() {
-    val a = promtDuoble("Введите число: ")
-    val b = promtDuoble("Введите число: ")
-    println("$a - $b = ${a - b}")
+open class Operation {
+   open fun calculate() {
+
+    }
 }
 
-fun multiply() {
-    val a = promtDuoble("Введите число: ")
-    val b = promtDuoble("Введите число: ")
-    println("$a * $b = ${a * b}")
+class Plus(): Operation() {
+   override fun calculate() {
+        val a = promtDuoble("Введите число: ")
+        val b = promtDuoble("Введите число: ")
+        println("$a + $b = ${a + b}")
+    }
 }
 
-fun divide() {
-    val a = promtDuoble("Введите число: ")
-    val b = promtDuoble("Введите число: ")
+class Minus(): Operation() {
+    override fun calculate() {
+        val a = promtDuoble("Введите число: ")
+        val b = promtDuoble("Введите число: ")
+        println("$a - $b = ${a - b}")
+    }
+}
 
-    if (b - 0 < 0.0001) {
-        println("Делить на ноль нельзя!")
-    } else {
-        println("$a / $b = ${a / b}")
+class Multiply(): Operation() {
+    override fun calculate() {
+        val a = promtDuoble("Введите число: ")
+        val b = promtDuoble("Введите число: ")
+        println("$a * $b = ${a * b}")
+    }
+}
+
+class Divide(): Operation() {
+    override fun calculate() {
+        val a = promtDuoble("Введите число: ")
+        val b = promtDuoble("Введите число: ")
+
+        if (b - 0 < 0.0001) {
+            println("Делить на ноль нельзя!")
+        } else {
+            println("$a / $b = ${a / b}")
+        }
+    }
+}
+class InvalidOperation(): Operation() {
+    override fun calculate() {
+        println("Неверный знак операции, знак может быть +, -, *, /")
     }
 }
 
